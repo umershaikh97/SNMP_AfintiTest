@@ -9,3 +9,18 @@ After the research, I decided to extend the 'net-snmp' module to add sub-agents 
 2) 'net-snmp' package for JavaScript was available to work with. 
 3) I have vast experience working with JavaScript and I find it pretty comfortable to code in JavaScript.
 Although, JavaScript is not the best choice for solving this problem, as compared to some languages such as C, C++ and Shell. But in our case, we can barely see any difference due to the language.  
+
+
+## Tasks 
+
+
+| Tasks           |Time spent on each task                                    
+|----------------|--------------------------------------------------------
+|Research|    8 hours                 
+|Installation and configuration of Ubuntu          | 1 hour          
+|Learning and configuration of PostgreSQL          | 1.5 hours
+|Installation and set up snmp and other dependencies          | 1.5 hours
+|Development of solution           | 6 hours
+|Learning and configuration of PostgreSQL          | 2 hours
+
+****I faced lots of issues and problems while configuring snmp, fixing those issue took hours of research and debugging, which I didn't mentioned**
