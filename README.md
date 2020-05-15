@@ -56,3 +56,52 @@ and  paste the file in this **/usr/share/snmp/mibs** directory.
 
 - As we have updated the MIBs and changed the configuration, so we need to restart the snmpd service to run with updated configurations, we can do this by simply running the command:  <br>
 **sudo service snmpd restart**	
+
+- Install Node to run the project, by running the command:  <br>
+**sudo apt install nodejs**
+
+- After cloning or downloading the attached project, go to the root directory of the project and install the dependencies by running the command:   <br>
+**sudo npm install**	
+
+- Then create a .env file in the root directory of the project to set environment variables according to your database, your .env file must include following environment variables: 
+	
+	**PGHOST=hostAddress  <br>
+	PGPORT=hostPort  <br>
+	PGUSER=userName  <br>
+	PGPASSWORD=password  <br>
+	PGDATABASE=databaseName**  <br>	
+	
+	In my case, .env file had the following content:
+	
+	**PGHOST=127.0.0.1  <br>
+PGPORT=5432  <br>
+PGUSER=postgres  <br>
+PGPASSWORD=12345  <br>
+PGDATABASE=afinitiTest**  <br>
+
+- Now, we need to run migrations to populate the database, by running the following command in the root directory of the project:   <br>
+**node db/migration.js** <br>
+you should see the message **Migration Successful** in the console.
+
+- Now, the final step is to run our **index.js** , by running the following command in the root directory of the project:  <br>
+**sudo node index.js**	<br>
+you should see the message **custom agent service started...** in the console.
+
+## Testing
+
+I tested the sub agent on the custom OIDs, by running **snmpwalk** and **snmpget** commands, the syntax for these commands is: <br>
+- snmpget -v [snmpVersion] -c [communityString] [hostAddress] [oid] <br>
+- snmpwalk -v [snmpVersion] -c [communityString] [hostAddress] [oid] <br>
+
+So for our custom OIDs, typical snmpget command would be: <br><br>
+**snmpget -v 2c -c public localhost 1.3.6.1.4.1.53864.1.1.1.0** <br>**Output:** NET-SNMP-CUSTOM-MIB::swVersionString.0 = STRING: "6.1.1"<br><br>
+**We need to add **.0** at the end of our OID, as it is scalar type, So don't forget to add **.0** at the end of custom OID.
+
+## Other approaches
+
+As I mentioned earlier, JavaScript is not the best choice for these types of tasks, so on large scale, we will get better results from C, C++, C# or Shell in terms of performance and time complexity. While for this limited solution, we can barely see any difference. 
+
+## Note
+
+I also tried to build similar custom SNMP agent component for windows machine, without using any 3rd party library or package. You can view this [SNMP-NodeJS](https://github.com/umershaikh97/SNMP-NodeJS) repository too. It is not an actual SNMP agent, rather it is just a representation of an agent.
+
