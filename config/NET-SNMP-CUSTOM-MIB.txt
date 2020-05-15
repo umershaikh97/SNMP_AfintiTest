@@ -1,0 +1,56 @@
+NET-SNMP-CUSTOM-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Integer32, enterprises FROM SNMPv2-SMI;
+
+afiniti MODULE-IDENTITY
+    LAST-UPDATED "202005140000Z"
+    ORGANIZATION "Umer Shaikh"
+    CONTACT-INFO    
+         "postal:   N/A
+          email:    umershaikh305@gmail.com"
+    DESCRIPTION
+        "Custom snmp agent for hiring test"
+    REVISION     "202005150000Z"
+    DESCRIPTION
+        "First draft"
+    ::= { enterprises 53864 }
+
+--
+-- top level structure
+--
+
+afinitiTest        OBJECT IDENTIFIER ::= { afiniti 1 }
+swVersion    	   OBJECT IDENTIFIER ::= { afinitiTest 1 }
+latestSignalValue  OBJECT IDENTIFIER ::= { afinitiTest 2 }
+discUsage          OBJECT IDENTIFIER ::= { afinitiTest 3 }
+
+--
+-- Example scalars
+--
+
+ swVersionString OBJECT-TYPE
+    SYNTAX      OCTET STRING
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Software version"
+    DEFVAL { "6.1.1" }
+    ::= { softwareVersion 1 }
+ 
+  latestSignalValueInteger OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "Latest signal value from tbl snmpSignals in Db afintiTest."
+    ::= { latestSignalValue 1 }
+ 
+ diskSpaceInteger OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "Total used disk area in /var/log"
+    ::= { diskSpace 1 }
+END
