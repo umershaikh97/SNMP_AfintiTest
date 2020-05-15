@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/umershaikh97/SNMP_AfintiTest/issues"
   },
-  "homepage": "https://github.com/umershaikh97/SNMP_AfintiTest#readme"
+  "homepage": "https://github.com/umershaikh97/SNMP_AfintiTest#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "net-snmp": "^2.6.4",
+    "pg-native": "^3.0.0"
+  }
 }
